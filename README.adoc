@@ -22,7 +22,7 @@ Reload nginx service to load the new config.
 [source, bash]
 ----
 systemctl reload nginx
------
+----
 
 
 == Installation
