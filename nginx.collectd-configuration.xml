@@ -1,0 +1,5 @@
+<service name="nginx" interval="300000" user-defined="false" status="on" >
+ <parameter key="collection" value="nginx_stats" />
+ <parameter key="retry" value="1" />
+ <parameter key="timeout" value="2000" />
+</service>

@@ -1,0 +1,8 @@
+<service name="nginx" interval="300000" user-defined="true" status="on">
+  <parameter key="retry" value="3"/>
+  <parameter key="timeout" value="3000"/>
+  <parameter key="service-name" value="nginx"/>
+  <parameter key="run-level" value="3"/>
+  <parameter key="match-all" value="true"/>
+</service>
+<monitor service="nginx" class-name="org.opennms.netmgt.poller.monitors.HostResourceSwRunMonitor"/>

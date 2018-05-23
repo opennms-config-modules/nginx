@@ -1,0 +1,26 @@
+  <http-collection name="nginx_stats">
+    <rrd step="300">
+      <rra>RRA:AVERAGE:0.5:1:8928</rra>
+      <rra>RRA:AVERAGE:0.5:12:8784</rra>
+      <rra>RRA:MIN:0.5:12:8784</rra>
+      <rra>RRA:MAX:0.5:12:8784</rra>
+    </rrd>
+    <uris>
+      <uri name="nginx_stats">
+        <url path="/nginx_status/"
+             user-agent="OpenNMS HTTP Datacollection" 
+             matches="(?s).*Active connections.\s([0-9]+).*\n.([0-9]+)\s([0-9]+)\s([0-9]+).\nReading:\s([0-9]+)\sWriting:\s([0-9]+)\sWaiting.\s([0-9]+).*" response-range="100-399">
+       </url>
+       <attributes>
+          <attrib alias="nginxActive" match-group="1" type="gauge32"/>
+          <attrib alias="nginxAccepts" match-group="2" type="counter32"/>
+          <attrib alias="nginxHandled" match-group="3" type="counter32"/>
+          <attrib alias="nginxRequests" match-group="4" type="counter32"/>
+          <attrib alias="nginxReading" match-group="5" type="gauge32"/>
+          <attrib alias="nginxWriting" match-group="6" type="gauge32"/>
+          <attrib alias="nginxWaiting" match-group="7" type="gauge32"/>
+        </attributes>
+      </uri>
+    </uris>
+  </http-collection>
+</http-datacollection-config>

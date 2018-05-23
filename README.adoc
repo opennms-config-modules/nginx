@@ -1,0 +1,57 @@
+= nginx
+
+OpenNMS configuration for nginx
+
+== Nginx Configuration
+
+Inside your nginx config file you need to enable status
+
+[source, bash]
+----
+location /nginx_status {
+  stub_status on;
+  access_log   off;
+  allow IP-OpenNMS;
+  deny all;
+}
+----
+
+Reload nginx service to load the new config.
+
+[source, bash]
+----
+systemctl reload nginx
+-----
+
+
+== Installation
+
+.Download and install from GitHub
+[source, bash]
+----
+mkdir ${HOME}/opennms-config-workspace
+cd ${HOME}/opennms-config-workspace
+git clone https://github.com/opennms-config-modules/nginx.git
+----
+
+=== Data Collection
+
+.Install datacollection configuration
+[source, bash]
+----
+sed -i '/<\/http-datacollection-config>/d' ${OPENNMS_HOME}/etc/http-datacollection-config.xml && cat ${HOME}/opennms-config-workspace/nginx/nginx.http-datacollection-config.xml >> ${OPENNMS_HOME}/etc/http-datacollection-config.xml
+----
+
+Add the service defintion provided in *nginx.collectd-configuration.xml* manually into your ${OPENNMS_HOME}/etc/collectd-configuration.xml package.
+
+=== Graph Report Definitions
+
+.Install graph report definitions
+[source, bash]
+----
+cp ${HOME}/opennms-config-workspace/nginx/graphs/*.properties ${OPENNMS_HOME}/etc/snmp-graph.properties.d
+----
+
+=== Pollerd Service Monitor
+
+Add the provided service monitor in *nginx.pollerd-configuration.xml* into your ${OPENNMS_HOME}/etc/pollerd-configuration.xml.
