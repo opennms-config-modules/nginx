@@ -50,7 +50,7 @@ Add the service defintion provided in *nginx.collectd-configuration.xml* manuall
 .Install graph report definitions
 [source, bash]
 ----
-cp ${HOME}/opennms-config-workspace/nginx/graphs/*.properties ${OPENNMS_HOME}/etc/snmp-graph.properties.d
+cp ${HOME}/opennms-config-workspace/nginx/snmp-graphs.properties.d/*.properties ${OPENNMS_HOME}/etc/snmp-graph.properties.d
 ----
 
 === Pollerd Service Monitor
