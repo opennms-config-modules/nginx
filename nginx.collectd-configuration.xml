@@ -3,3 +3,4 @@
  <parameter key="retry" value="1" />
  <parameter key="timeout" value="2000" />
 </service>
+<collector service="nginx" class-name="org.opennms.netmgt.collectd.HttpCollector" />
